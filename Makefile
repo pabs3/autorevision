@@ -45,7 +45,7 @@ EXTRA_DIST = \
 	AUTHORS.txt \
 	autorevision.cache
 
-all : cmd man logo.svg
+all : cmd man examples logo.svg
 
 # The script
 cmd: autorevision
@@ -67,6 +67,9 @@ autorevision.1: autorevision.asciidoc
 # HTML representation of the man page
 autorevision.html: autorevision.asciidoc
 	asciidoc --attribute="revdate=$(DOCDATE)" --attribute="footer-style=revdate" --attribute="revnumber=$(VERS)" --doctype=manpage --backend=xhtml11 autorevision.asciidoc
+
+examples:
+	./examples/mkexamp.sh
 
 # Authors
 auth: AUTHORS.txt
@@ -112,6 +115,7 @@ uninstall:
 
 clean:
 	rm -f autorevision autorevision.html autorevision.1 autorevision.1.gz
+	rm -f examples/autorevision.*
 	rm -f autorevision.sed logo.svg
 	rm -f *.tgz *.md5 *.sig
 	rm -f docbook-xsl.css
@@ -135,3 +139,5 @@ docs: \
 release: docs dist
 	git tag -v "v/$(VERS)"
 #	shipper version=$(VERS) | sh -e -x
+
+.PHONY: examples
