@@ -26,6 +26,67 @@ usage: autorevision {-t output-type | -s symbol} [-o cache-file [-f] ] [-e name]
 	-?			= help message
 
 The following are valid output types:
+$OUTPUT_TYPES
+
+outputAlias() {
+	if [ "${AFILETYPE}" = "python" ]; then
+		AFILETYPE=py
+	elif [ "${AFILETYPE}" = "perl" ]; then
+		AFILETYPE=pl
+	fi
+}
+
+
+	if [ "${AFILETYPE}" = "c" ]; then
+		cOutput
+	elif [ "${AFILETYPE}" = "h" ]; then
+		hOutput
+	elif [ "${AFILETYPE}" = "xcode" ]; then
+		xcodeOutput
+	elif [ "${AFILETYPE}" = "swift" ]; then
+		swiftOutput
+	elif [ "${AFILETYPE}" = "sed" ]; then
+		sedOutput
+	elif [ "${AFILETYPE}" = "sh" ]; then
+		shOutput
+	elif [ "${AFILETYPE}" = "py" ] || [ "${AFILETYPE}" = "python" ]; then
+		pyOutput
+	elif [ "${AFILETYPE}" = "pl" ] || [ "${AFILETYPE}" = "perl" ]; then
+		plOutput
+	elif [ "${AFILETYPE}" = "lua" ]; then
+		luaOutput
+	elif [ "${AFILETYPE}" = "php" ]; then
+		phpOutput
+	elif [ "${AFILETYPE}" = "ini" ]; then
+		iniOutput
+	elif [ "${AFILETYPE}" = "js" ]; then
+		jsOutput
+	elif [ "${AFILETYPE}" = "json" ]; then
+		jsonOutput
+	elif [ "${AFILETYPE}" = "java" ]; then
+		javaOutput
+	elif [ "${AFILETYPE}" = "javaprop" ]; then
+		javapropOutput
+	elif [ "${AFILETYPE}" = "csharp" ]; then
+		csharpOutput
+	elif [ "${AFILETYPE}" = "tex" ]; then
+		texOutput
+	elif [ "${AFILETYPE}" = "m4" ]; then
+		m4Output
+	elif [ "${AFILETYPE}" = "scheme" ]; then
+		schemeOutput
+	elif [ "${AFILETYPE}" = "clojure" ]; then
+		clojureOutput
+	elif [ "${AFILETYPE}" = "rpm" ]; then
+		rpmOutput
+	elif [ "${AFILETYPE}" = "hpp" ]; then
+		hppOutput
+	elif [ "${AFILETYPE}" = "matlab" ]; then
+		matlabOutput
+	elif [ "${AFILETYPE}" = "octave" ]; then
+		octaveOutput
+	elif [ "${AFILETYPE}" = "cmake" ]; then
+		cmakeOutput
 	c			= C/C++ file
 	clojure			= clojure file
 	cmake 			= CMake script file
@@ -51,6 +112,7 @@ The following are valid output types:
 	swift			= Swift file
 	tex			= (La)TeX file
 	xcode			= Header useful for populating info.plist files
+
 
 
 The following are valid symbols:
@@ -1419,56 +1481,6 @@ fi
 
 # Detect requested output type and use it.
 if [ ! -z "${AFILETYPE}" ]; then
-	if [ "${AFILETYPE}" = "c" ]; then
-		cOutput
-	elif [ "${AFILETYPE}" = "h" ]; then
-		hOutput
-	elif [ "${AFILETYPE}" = "xcode" ]; then
-		xcodeOutput
-	elif [ "${AFILETYPE}" = "swift" ]; then
-		swiftOutput
-	elif [ "${AFILETYPE}" = "sed" ]; then
-		sedOutput
-	elif [ "${AFILETYPE}" = "sh" ]; then
-		shOutput
-	elif [ "${AFILETYPE}" = "py" ] || [ "${AFILETYPE}" = "python" ]; then
-		pyOutput
-	elif [ "${AFILETYPE}" = "pl" ] || [ "${AFILETYPE}" = "perl" ]; then
-		plOutput
-	elif [ "${AFILETYPE}" = "lua" ]; then
-		luaOutput
-	elif [ "${AFILETYPE}" = "php" ]; then
-		phpOutput
-	elif [ "${AFILETYPE}" = "ini" ]; then
-		iniOutput
-	elif [ "${AFILETYPE}" = "js" ]; then
-		jsOutput
-	elif [ "${AFILETYPE}" = "json" ]; then
-		jsonOutput
-	elif [ "${AFILETYPE}" = "java" ]; then
-		javaOutput
-	elif [ "${AFILETYPE}" = "javaprop" ]; then
-		javapropOutput
-	elif [ "${AFILETYPE}" = "csharp" ]; then
-		csharpOutput
-	elif [ "${AFILETYPE}" = "tex" ]; then
-		texOutput
-	elif [ "${AFILETYPE}" = "m4" ]; then
-		m4Output
-	elif [ "${AFILETYPE}" = "scheme" ]; then
-		schemeOutput
-	elif [ "${AFILETYPE}" = "clojure" ]; then
-		clojureOutput
-	elif [ "${AFILETYPE}" = "rpm" ]; then
-		rpmOutput
-	elif [ "${AFILETYPE}" = "hpp" ]; then
-		hppOutput
-	elif [ "${AFILETYPE}" = "matlab" ]; then
-		matlabOutput
-	elif [ "${AFILETYPE}" = "octave" ]; then
-		octaveOutput
-	elif [ "${AFILETYPE}" = "cmake" ]; then
-		cmakeOutput
 	else
 		echo "error: Not a valid output type." 1>&2
 		exit 1
